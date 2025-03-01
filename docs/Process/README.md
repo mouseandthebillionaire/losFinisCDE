@@ -6,6 +6,8 @@ Okay. Wow. So this went really fast. This project started as an experiment to ma
 
 The general idea is simple node-based etch-a-sketch style movement, where you're trying to locate hidden locations and lock them in. Once you do an additional node is ceated, which is linked by a line to the current node. After you set a certain number of nodes (8 in the current version) the nodes start to return to the center and you start again. You end up forming some sort of organic constallation of nodes, which feels somewhat interesting? Obviously once sound is in here, it will be more compelling, but I like the idea that you are generating (with the system) a piece of music that is unique each time. Currently it is set by the system (you trying to find the nodes) but it could also be user-directed?
 
+![First Version](../Media/version1.png)
+
 ### Next
 - Build out the synth in Max MSP
 - Import that into the project via RNBO
