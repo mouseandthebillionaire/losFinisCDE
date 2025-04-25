@@ -96,7 +96,7 @@ public class Controller : MonoBehaviour {
         stream.BaseStream.Flush();
         
         // Buffer to help it stop freaking out?
-        yield return new WaitForSeconds(1);
+        // yield return new WaitForSeconds(1);
         yield return null;
     }
     
