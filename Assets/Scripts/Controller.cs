@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+#if UNITY_EDITOR
 using System.IO.Ports;
+#endif
 using System.Threading;
 
 public class Controller : MonoBehaviour {
@@ -8,7 +10,9 @@ public class Controller : MonoBehaviour {
     public bool controllerActive = false;
     
     // Serial data
+#if UNITY_EDITOR
     private SerialPort stream;
+#endif
     Thread             serialThread;
     string             serialData;
     private bool       serialReceived = false;
@@ -47,12 +51,15 @@ public class Controller : MonoBehaviour {
 
     void Start()
     {
+#if UNITY_EDITOR
         ConnectController();
+#endif
         ResetVariables();
     }
 
     private void ConnectController()
     {
+#if UNITY_EDITOR
         string[] ports = SerialPort.GetPortNames();
         string   portName;
         for (int i = 0; i < ports.Length; i++) {
@@ -74,15 +81,22 @@ public class Controller : MonoBehaviour {
                 print("Connected to serial");
             }
         }
+#endif
     }
 
     public void Light(string message)
     {
+#if UNITY_EDITOR
         StartCoroutine(SwitchLight(message));
+#else
+        // In builds, just update the status without sending commands
+        lightStatus = message;
+#endif
     }
 
     private IEnumerator SwitchLight(string message)
     {
+#if UNITY_EDITOR
         if (message == "on" && lightStatus == "off")
         {
             lightStatus = "on";
@@ -94,6 +108,7 @@ public class Controller : MonoBehaviour {
             lightStatus = "off";
         }
         stream.BaseStream.Flush();
+#endif
         
         // Buffer to help it stop freaking out?
         // yield return new WaitForSeconds(1);
@@ -107,7 +122,6 @@ public class Controller : MonoBehaviour {
         {
             StartCoroutine(UpdateDial(i));
         }
-
     }
 
     public int GetDialValue(int dialNum)
@@ -140,14 +154,12 @@ public class Controller : MonoBehaviour {
         {
             if (Input.anyKey)
             {
-
                 // Can I just force these?
                 if (Input.GetKey(downDials[dialNum])) dials[dialNum] = 1;
                 else if (Input.GetKey(upDials[dialNum])) dials[dialNum] = 2;
             }
             else dials[dialNum] = 0;
         }
-
 
         // turned right
         if (dials[dialNum] == 1) dialDir[dialNum] = -1;
@@ -156,7 +168,6 @@ public class Controller : MonoBehaviour {
         
         yield return null;
     }
-
 
     public void ResetVariables() {
         Light("off");
@@ -174,10 +185,12 @@ public class Controller : MonoBehaviour {
     void OnApplicationQuit()
     {
         Light("off");
-        if (stream.IsOpen) {
+#if UNITY_EDITOR
+        if (stream != null && stream.IsOpen) {
             stream.Close();
             serialThread.Abort();
         }
+#endif
     }
 
     void OnApplicationPause() {
@@ -185,6 +198,7 @@ public class Controller : MonoBehaviour {
     }
 
     void ParseData() {
+#if UNITY_EDITOR
         while(true) {
             serialData = stream.ReadLine();
             
@@ -205,7 +219,7 @@ public class Controller : MonoBehaviour {
                 }
             }
         }
+#endif
     }
-
 }
 
