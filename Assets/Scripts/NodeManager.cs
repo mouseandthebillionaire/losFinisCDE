@@ -19,7 +19,7 @@ public class NodeManager : MonoBehaviour
     private Controller controller;
     private bool isFirstNode = true;  // Track if this is the first node
     private bool isReturning = false;
-    private int nextNodeNumber = 1; // Track the next node number to assign
+    private int nextNodeNumber = 0; // Track the next node number to assign, starting at 0
     private bool isDrawingLine = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -137,7 +137,7 @@ public class NodeManager : MonoBehaviour
         // Reset flags
         isReturning = false;
         isFirstNode = true;
-        nextNodeNumber = 1; // Reset the node counter
+        nextNodeNumber = 0; // Reset the node counter to 0
         
         // Start new sequence
         SpawnNewNode();

@@ -11,6 +11,7 @@ public class NodeScript : MonoBehaviour
     public float precisionControlDistance = 0.5f; // Distance at which to start precise movement
     public float precisionSpeedMultiplier = 0.2f; // How much to slow down when near target
     public float initialDelay = 0.5f; // Delay before node becomes controllable
+    public string[] distortionEffects = {"Distortion_10", "Distortion_9", "Distortion_6", "Distortion_4"}; // Which distortion effect to use
     
     [Header("References")]
     public GameObject target;
@@ -92,14 +93,27 @@ public class NodeScript : MonoBehaviour
     void UpdatePosition()
     {
         float moveSpeed = ActualMoveSpeed;
-        float distanceToTarget = Vector2.Distance(new Vector2(locX, locY), targetPosition);
+        Vector2 currentPos = new Vector2(locX, locY);
+        
+        // Calculate normalized direction to target
+        Vector2 directionToTarget = (targetPosition - currentPos).normalized;
+        
+        // Calculate distances for rotation
+        float xDistance = Mathf.Abs(targetPosition.x - currentPos.x);
+        float yDistance = Mathf.Abs(targetPosition.y - currentPos.y);
+        Vector2 distanceToTarget = new Vector2(xDistance, yDistance);
+
+        // Calculate distortion amount based on distance (1 when far, 0 when close)
+        float maxDistance = 5f; // Maximum distance for full distortion
+        float distortionAmount = Mathf.Clamp01(distanceToTarget.magnitude / maxDistance);
+        TextEffectManager.S.SetDistortion(distortionEffects[nodeNumber], distortionAmount);
 
         // Store old position in case we need to revert
         float oldX = locX;
         float oldY = locY;
 
         // Reduce speed when close to target for more precise control
-        if (distanceToTarget < precisionControlDistance)
+        if (distanceToTarget.magnitude < precisionControlDistance)
         {
             moveSpeed *= precisionSpeedMultiplier;
         }
@@ -129,7 +143,7 @@ public class NodeScript : MonoBehaviour
         childTransform.localPosition = new Vector3(locX, locY, 0);
         currentPosition = new Vector2(locX, locY);
 
-        // Update the text rotation as well
+        // Update the text rotation with absolute distances
         textImage.GetComponent<TextTransform>().UpdateRotation(distanceToTarget);
     }
 

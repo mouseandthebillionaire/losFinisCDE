@@ -6,7 +6,7 @@ public class TextTransform : MonoBehaviour
     public float maxRotationAngle = 45f;
     public float rotationSpeed = 2f;
     
-    private float originalRotation;
+    private Vector2 originalRotation;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,14 +21,22 @@ public class TextTransform : MonoBehaviour
     }
 
     private void SetRandomRotation(){
-        float randomRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
-        transform.rotation = Quaternion.Euler(0, 0, randomRotation);
-        originalRotation = randomRotation;
+        float randomZRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
+        float randomYRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
+        transform.rotation = Quaternion.Euler(0, randomYRotation, randomZRotation);
+        originalRotation = new Vector2(randomZRotation, randomYRotation);
     }
 
-    public void UpdateRotation(float distanceToTarget){
-        float rotationProgress = Mathf.Clamp01(1f - (distanceToTarget / 5f)); // 5f is max distance
-        float targetRotation = Mathf.LerpAngle(originalRotation, 0f, rotationProgress * rotationSpeed);
-        transform.rotation = Quaternion.Euler(0, 0, targetRotation);
+    public void UpdateRotation(Vector2 distanceToTarget){
+        // Calculate rotation progress for both Z and Y axes
+        float zRotationProgress = Mathf.Clamp01(1f - (Mathf.Abs(distanceToTarget.x) / 5f));
+        float yRotationProgress = Mathf.Clamp01(1f - (Mathf.Abs(distanceToTarget.y) / 5f));
+        
+        // Calculate target rotations
+        float targetZRotation = Mathf.LerpAngle(originalRotation.x, 0f, zRotationProgress * rotationSpeed);
+        float targetYRotation = Mathf.LerpAngle(originalRotation.y, 0f, yRotationProgress * rotationSpeed);
+        
+        // Apply the rotations
+        transform.rotation = Quaternion.Euler(0, targetYRotation, targetZRotation);
     }
 }
