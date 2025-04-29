@@ -136,11 +136,13 @@ MonoBehaviour:
   speedSetting: 4.64
   proximityThreshold: 1
   precisionControlDistance: 0.5
-  precisionSpeedMultiplier: 0.2
+  precisionSpeedMultiplier: 0.01
   target: {fileID: 1910808128874836351}
+  image: {fileID: 0}
   selected: 1
   currentPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
+  nodeNumber: 0
 --- !u!1 &7124275041884000024
 GameObject:
   m_ObjectHideFlags: 0

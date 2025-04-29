@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class NodeScript : MonoBehaviour
 {
@@ -8,29 +10,59 @@ public class NodeScript : MonoBehaviour
     public float proximityThreshold = 1f;
     public float precisionControlDistance = 0.5f; // Distance at which to start precise movement
     public float precisionSpeedMultiplier = 0.2f; // How much to slow down when near target
+    public float initialDelay = 0.5f; // Delay before node becomes controllable
     
     [Header("References")]
     public GameObject target;
+    public GameObject image;
     
     // Public access needed by NodeManager
     public bool selected;
     public Vector2 currentPosition;
     public Vector2 targetPosition;
+    public int nodeNumber; // The node's assigned number
     
     private float locX, locY;
     private Transform childTransform;
     private Controller controller;
+    private float currentRotation;
+    private float targetRotation;
     
     private float ActualMoveSpeed => Mathf.Lerp(0.001f, 0.005f, (speedSetting - 1f) / 9f);
     private bool movementPaused = false;
     private bool isSnapped = false;
     private Vector2 snappedPosition;
+    private bool canMove = false;
 
     void Start()
     {
         controller = Controller.S;  // Cache controller reference
         childTransform = transform.GetChild(0);
+        
+        // Initialize node position at (0,0)
+        locX = 0;
+        locY = 0;
+        currentPosition = Vector2.zero;
+        childTransform.localPosition = Vector2.zero;
+        
+        // Set random target position
         SetNewRandomTarget();
+        
+        image = GameObject.Find($"Image {nodeNumber}");
+
+        // Start the delay coroutine
+        StartCoroutine(EnableMovementAfterDelay());
+    }
+
+    private IEnumerator EnableMovementAfterDelay()
+    {
+        yield return new WaitForSeconds(initialDelay);
+        canMove = true;
+    }
+
+    public void SetNodeNumber(int number)
+    {
+        nodeNumber = number;
     }
 
     void SetNewRandomTarget()
@@ -48,7 +80,7 @@ public class NodeScript : MonoBehaviour
 
     void Update()
     {
-        if (!selected || movementPaused) return;
+        if (!selected || movementPaused || !canMove) return;
 
         UpdatePosition();
 
@@ -96,6 +128,9 @@ public class NodeScript : MonoBehaviour
         // Update visuals
         childTransform.localPosition = new Vector3(locX, locY, 0);
         currentPosition = new Vector2(locX, locY);
+
+        // Update the text rotation as well
+        image.GetComponent<TextTransform>().UpdateRotation(distanceToTarget);
     }
 
     public void Deselect()

@@ -11,6 +11,7 @@ public class NodeManager : MonoBehaviour
     public float returnSpeed = 2f;  // Speed of return to center
     public float centerThreshold = 0.1f;  // How close to center before considering "arrived"
     public float colorTransitionDistance = 4f;  // Distance over which color transition occurs
+    public float lineDrawDuration = 0.5f;  // Duration of the line drawing animation
 
     public NodeScript currentNode;
     public List<NodeScript> nodeHistory = new List<NodeScript>();
@@ -18,6 +19,8 @@ public class NodeManager : MonoBehaviour
     private Controller controller;
     private bool isFirstNode = true;  // Track if this is the first node
     private bool isReturning = false;
+    private int nextNodeNumber = 1; // Track the next node number to assign
+    private bool isDrawingLine = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,29 +56,16 @@ public class NodeManager : MonoBehaviour
                 lineMaterial.SetFloat("_DistanceToTarget", normalizedDistance);
             }
             
-            // Signal the controller when near target
-            if (distance < spawnThreshold)
-            {
-                Controller.S.Light("on");
-            }
-            else 
-            {
-                Controller.S.Light("off");
-            }
-            
             UpdateLines();
             
-            if (distance < spawnThreshold && controller.launchButtonPressed)
+            if (distance < spawnThreshold)
             {
-                Controller.S.Light("off");
-                Debug.Log("Spawning new node!");
                 nodeHistory.Add(currentNode);
                 CreateNewLine(currentNode.currentPosition);
                 
                 // Check if we've reached max nodes
                 if (nodeHistory.Count >= maxNodes - 1)
                 {
-                    Debug.Log("Max nodes reached! Starting return sequence...");
                     StartCoroutine(ReturnToCenter());
                 }
                 else
@@ -147,6 +137,7 @@ public class NodeManager : MonoBehaviour
         // Reset flags
         isReturning = false;
         isFirstNode = true;
+        nextNodeNumber = 1; // Reset the node counter
         
         // Start new sequence
         SpawnNewNode();
@@ -164,9 +155,36 @@ public class NodeManager : MonoBehaviour
         newLine.endWidth = 0.1f;
         newLine.positionCount = 2;
         newLine.SetPosition(0, startPos);
-        newLine.SetPosition(1, startPos);
+        newLine.SetPosition(1, startPos);  // Start with both points at the same position
         
         lines.Add(newLine);
+        
+        // Start the line drawing animation
+        StartCoroutine(AnimateLineDrawing(newLine, startPos, Vector3.zero));
+    }
+
+    private IEnumerator AnimateLineDrawing(LineRenderer line, Vector3 startPos, Vector3 endPos)
+    {
+        isDrawingLine = true;
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < lineDrawDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / lineDrawDuration;
+            
+            // Use a smooth step function for more natural animation
+            t = Mathf.SmoothStep(0f, 1f, t);
+            
+            // Update the end position of the line
+            line.SetPosition(1, Vector3.Lerp(startPos, endPos, t));
+            
+            yield return null;
+        }
+        
+        // Ensure the line ends exactly at the target position
+        line.SetPosition(1, endPos);
+        isDrawingLine = false;
     }
 
     void UpdateLines()
@@ -184,7 +202,7 @@ public class NodeManager : MonoBehaviour
                 lines[i].SetPosition(0, newStartPos);
                 lines[i].SetPosition(1, newEndPos);
             }
-            else
+            else if (!isDrawingLine)  // Only update line positions if we're not currently drawing a new line
             {
                 // Normal line updating during gameplay
                 if (i < nodeHistory.Count && i + 1 < nodeHistory.Count)
@@ -206,13 +224,11 @@ public class NodeManager : MonoBehaviour
     {
         Debug.Log("SpawnNewNode called");
         
-        // Deselect the previous node
         if (currentNode != null)
         {
             currentNode.Deselect();
         }
         
-        // Spawn the new node at origin
         GameObject newNode = Instantiate(nodePrefab, Vector3.zero, Quaternion.identity);
         newNode.transform.SetParent(transform, false);
         currentNode = newNode.GetComponent<NodeScript>();
@@ -222,6 +238,9 @@ public class NodeManager : MonoBehaviour
             Debug.LogError("NodeScript component not found on spawned prefab!");
             return;
         }
+
+        // Assign the node number
+        currentNode.SetNodeNumber(nextNodeNumber++);
 
         // Calculate target position
         Vector2 targetPosition = Vector2.zero;
