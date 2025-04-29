@@ -35,10 +35,10 @@ In the next couple of days I want to think/write more on the repetitive nature o
 
 ## Notes
 
-<sub>
 1. Which I've never even read, but the potential links to the repetitive nature of the work is too good to ignore. Hopefully I won't read it and immediately regret my choice
 2. [Photopea](https://www.photopea.com) actually, because the University keeps taking away my Adobe credentials...
-</sub>
+
+
 
 
 
