@@ -6,6 +6,8 @@ public class TextTransform : MonoBehaviour
     public float maxRotationAngle = 45f;
     public float rotationSpeed = 2f;
     
+    private float originalRotation;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,12 +23,12 @@ public class TextTransform : MonoBehaviour
     private void SetRandomRotation(){
         float randomRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
         transform.rotation = Quaternion.Euler(0, 0, randomRotation);
+        originalRotation = randomRotation;
     }
 
     public void UpdateRotation(float distanceToTarget){
         float rotationProgress = Mathf.Clamp01(1f - (distanceToTarget / 5f)); // 5f is max distance
-        float currentRotation = transform.rotation.eulerAngles.z;
-        float targetRotation = Mathf.LerpAngle(currentRotation, 0f, rotationProgress * rotationSpeed * Time.deltaTime);
+        float targetRotation = Mathf.LerpAngle(originalRotation, 0f, rotationProgress * rotationSpeed);
         transform.rotation = Quaternion.Euler(0, 0, targetRotation);
     }
 }

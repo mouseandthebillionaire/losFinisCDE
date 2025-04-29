@@ -14,7 +14,7 @@ public class NodeScript : MonoBehaviour
     
     [Header("References")]
     public GameObject target;
-    public GameObject image;
+    public GameObject textImage;
     
     // Public access needed by NodeManager
     public bool selected;
@@ -48,7 +48,7 @@ public class NodeScript : MonoBehaviour
         // Set random target position
         SetNewRandomTarget();
         
-        image = GameObject.Find($"Image {nodeNumber}");
+        textImage = GameObject.Find($"Image {nodeNumber}");
 
         // Start the delay coroutine
         StartCoroutine(EnableMovementAfterDelay());
@@ -130,7 +130,7 @@ public class NodeScript : MonoBehaviour
         currentPosition = new Vector2(locX, locY);
 
         // Update the text rotation as well
-        image.GetComponent<TextTransform>().UpdateRotation(distanceToTarget);
+        textImage.GetComponent<TextTransform>().UpdateRotation(distanceToTarget);
     }
 
     public void Deselect()

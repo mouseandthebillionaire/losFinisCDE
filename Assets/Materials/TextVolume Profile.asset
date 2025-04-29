@@ -1340,6 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4868203646647671182}
+  - {fileID: 4080835494843064310}
 --- !u!114 &664723362052713997
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1927,6 +1928,44 @@ MonoBehaviour:
   GlobalPostProcessingSettings:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &4080835494843064310
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf651632ce59b84885e79d1736581be, type: 3}
+  m_Name: Distortion_9
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  fade:
+    m_OverrideState: 1
+    m_Value: 1
+  maximumImages:
+    m_OverrideState: 0
+    m_Value: 1
+  speed:
+    m_OverrideState: 1
+    m_Value: 0.49
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  maskEdgeFineTuning:
+    m_OverrideState: 0
+    m_Value: 0.15
+  GlobalPostProcessingSettings:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &4362965022040749525
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2004,13 +2043,13 @@ MonoBehaviour:
     m_Value: 1
   Intensity:
     m_OverrideState: 1
-    m_Value: 1.06
+    m_Value: 1.13
   Frequency:
     m_OverrideState: 1
-    m_Value: 17
+    m_Value: 15
   Speed:
     m_OverrideState: 1
-    m_Value: 0.075
+    m_Value: 0.015
   center:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0}

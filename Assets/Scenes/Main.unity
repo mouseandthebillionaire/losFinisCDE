@@ -451,7 +451,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 4552643491226837451, guid: 573383d6746f04dbcb571a5bf852b050, type: 3}
   spawnThreshold: 0.5
   lineMaterial: {fileID: 2100000, guid: f7b80b974009f4d40ab78ce917803295, type: 2}
-  maxNodes: 5
+  maxNodes: 6
   returnSpeed: 2
   centerThreshold: 0.1
   colorTransitionDistance: 4
@@ -733,6 +733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4663439329356450706, guid: 077460171372747adbacfcce81a217cc, type: 3}
+      propertyPath: maxRotationAngle
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 6514245291463031372, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -829,6 +833,10 @@ PrefabInstance:
     - target: {fileID: 1176963521046100254, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Name
       value: Image 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663439329356450706, guid: 077460171372747adbacfcce81a217cc, type: 3}
+      propertyPath: maxRotationAngle
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6514245291463031372, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Pivot.x
@@ -1352,6 +1360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4663439329356450706, guid: 077460171372747adbacfcce81a217cc, type: 3}
+      propertyPath: maxRotationAngle
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 6514245291463031372, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1448,6 +1460,10 @@ PrefabInstance:
     - target: {fileID: 1176963521046100254, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Name
       value: Image 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663439329356450706, guid: 077460171372747adbacfcce81a217cc, type: 3}
+      propertyPath: maxRotationAngle
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6514245291463031372, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Pivot.x
@@ -1674,6 +1690,10 @@ PrefabInstance:
     - target: {fileID: 1176963521046100254, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Name
       value: Image 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663439329356450706, guid: 077460171372747adbacfcce81a217cc, type: 3}
+      propertyPath: maxRotationAngle
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6514245291463031372, guid: 077460171372747adbacfcce81a217cc, type: 3}
       propertyPath: m_Pivot.x
