@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager S;
 
     public int stage = 0;
+    public int numStages = 16;
     
     public int nodeCount = 0;
     public int maxNodeCount = 5;
@@ -25,5 +26,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void NextStage(){
+        stage++;
+        if(stage >= numStages){
+            stage = 0;
+        }
     }
 }

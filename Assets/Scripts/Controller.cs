@@ -6,6 +6,9 @@ using System.Threading;
 public class Controller : MonoBehaviour {
     // turn this on if we are using the controller
     public bool controllerActive = false;
+    public bool controlling = false;
+    public bool hideCursor = true;  // Add this to control cursor visibility
+    public KeyCode cursorToggleKey = KeyCode.Escape;  // Key to toggle cursor visibility
     
     // Serial data
     private SerialPort stream;
@@ -28,6 +31,8 @@ public class Controller : MonoBehaviour {
     
     // Dial Control
     public float dialLim = 100;
+
+    // Not using these?
     public float dialSpeed, dialSpeed_granular;
 
     // Singleton
@@ -38,21 +43,38 @@ public class Controller : MonoBehaviour {
         // Create Singleton
         if (S == null) S = this;
         else Destroy(this);
+        
+        // Hide cursor immediately
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Start()
     {
         ConnectController();
         ResetVariables();
+        // Hide cursor again in Start
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void OnEnable()
+    {
+        // Hide cursor when object is enabled
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void ConnectController()
     {
         string[] ports = SerialPort.GetPortNames();
-        string   portName;
+        Debug.Log($"Available ports: {string.Join(", ", ports)}");
+        string   portName = null;
         for (int i = 0; i < ports.Length; i++) {
+            Debug.Log($"Checking port: {ports[i]}");
             if (ports[i].Contains("usbmodem"))  {
                 portName = ports[i];
+                Debug.Log($"Found matching port: {portName}");
                 stream = new SerialPort(portName, 115200);
             }
         }
@@ -60,19 +82,37 @@ public class Controller : MonoBehaviour {
         // Initialize serial
         if (!stream.IsOpen && controllerActive) {
             if (SerialPort.GetPortNames().Length > 0) {
-                stream.Open();
-
-                serialThread = new Thread(new ThreadStart(ParseData));
-                serialThread.Start();
+                try {
+                    stream.Open();
+                    Debug.Log($"Successfully opened port: {portName}");
+                    serialThread = new Thread(new ThreadStart(ParseData));
+                    serialThread.Start();
+                    controlling = true;
+                }
+                catch (System.Exception e) {
+                    Debug.LogError($"Failed to open serial port: {e.Message}");
+                }
+            }
+            else {
+                Debug.LogWarning("No serial ports available");
             }
         }
     }
     
     void Update()
     {
-        for (int i = 0; i < dials.Length; i++)
+        if(controlling){
+            for (int i = 0; i < dials.Length; i++)
+            {
+                StartCoroutine(UpdateDial(i));
+            }
+        }
+        
+        // Keep cursor hidden every frame
+        if (Cursor.visible)
         {
-            StartCoroutine(UpdateDial(i));
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -157,6 +197,7 @@ public class Controller : MonoBehaviour {
             try {
                 if (stream != null && stream.IsOpen) {
                     serialData = stream.ReadLine();
+                    Debug.Log($"Received data: {serialData}");
                     
                     string[] parsedData = serialData.Split(':');
                     if (parsedData.Length >= dials.Length)

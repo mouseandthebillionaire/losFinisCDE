@@ -1,0 +1,218 @@
+[
+  {
+    "name": "synth",
+    "preset": {
+      "__sps": {
+        "Drive~": {},
+        "Post-EQ~": {
+          "__sps": {
+            "Bass~": {},
+            "Mid~": {},
+            "Treble~": {}
+          }
+        },
+        "note": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        },
+        "note[1]": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        },
+        "note[2]": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        },
+        "note[3]": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        },
+        "note[4]": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        },
+        "note[5]": {
+          "__sps": {
+            "env.adsr": {
+              "attack": {
+                "value": 30
+              },
+              "decay": {
+                "value": 200
+              },
+              "release": {
+                "value": 300
+              },
+              "sustain": {
+                "value": 0.5
+              }
+            },
+            "osc.fm[4]": {}
+          },
+          "index": {
+            "value": 1
+          },
+          "lfo": {
+            "value": 1
+          },
+          "ratio": {
+            "value": 1
+          }
+        }
+      },
+      "bpm": {
+        "value": 60
+      },
+      "drive": {
+        "value": 0.10000000000000002
+      },
+      "reverb/damping": {
+        "value": 0.5
+      },
+      "reverb/decay": {
+        "value": 0.5
+      },
+      "reverb/decay1": {
+        "value": 0.7
+      },
+      "reverb/decay2": {
+        "value": 0.5
+      },
+      "reverb/drywet": {
+        "value": 0.5
+      },
+      "reverb/inbandwidth": {
+        "value": 0.5
+      },
+      "reverb/indiffusion1": {
+        "value": 0.75
+      },
+      "reverb/indiffusion2": {
+        "value": 0.625
+      },
+      "reverb/predelay": {
+        "value": 10
+      }
+    }
+  }
+]

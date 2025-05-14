@@ -13,7 +13,7 @@ def split_into_layers(input_path, output_prefix, cell_size=1):
     img_array = np.array(img)
     
     # Create 15 empty layers with same dimensions and RGBA
-    layers = [np.zeros_like(img_array) for _ in range(15)]
+    layers = [np.zeros_like(img_array) for _ in range(5)]
     
     # Get height and width
     height, width = img_array.shape[:2]
@@ -27,7 +27,7 @@ def split_into_layers(input_path, output_prefix, cell_size=1):
             # Check if any pixel in the cell is not fully transparent
             if np.any(cell_pixels[:, :, 3] > 0):
                 # Randomly choose a layer (0-14)
-                layer_index = random.randint(0, 14)
+                layer_index = random.randint(0, 4)
                 # Place all pixels in the cell to the chosen layer
                 layers[layer_index][y:min(y+cell_size, height), x:min(x+cell_size, width)] = cell_pixels
     
@@ -40,7 +40,7 @@ def split_into_layers(input_path, output_prefix, cell_size=1):
 
 # Example usage
 if __name__ == "__main__":
-    input_file = "input.png"  # Replace with your input file
+    input_file = "main.png"  # Replace with your input file
     output_prefix = ""  # Replace with your desired output prefix
     cell_size = 10  # Adjust this value to change the cell size (e.g., 2 for 2x2 pixels, 3 for 3x3 pixels)
     split_into_layers(input_file, output_prefix, cell_size) 

@@ -11,7 +11,14 @@ public class NodeManager : MonoBehaviour
     public float returnSpeed = 2f;  // Speed of return to center
     public float centerThreshold = 0.1f;  // How close to center before considering "arrived"
     public float colorTransitionDistance = 4f;  // Distance over which color transition occurs
-    public float lineDrawDuration = 0.5f;  // Duration of the line drawing animation
+    public float lineDrawDuration = 3f;  // Duration of the line drawing animation
+
+    [Header("Node Movement Settings")]
+    public float proximityThreshold = 1f;
+    public float precisionControlDistance = 0.5f; // Distance at which to start precise movement
+    public float initialDelay = 1f; // Delay before node becomes controllable
+    public float minMoveSpeed = 0.2f; // Minimum movement speed
+    public float maxMoveSpeed = 10f; // Maximum movement speed
 
     public NodeScript currentNode;
     public List<NodeScript> nodeHistory = new List<NodeScript>();
@@ -21,6 +28,31 @@ public class NodeManager : MonoBehaviour
     private bool isReturning = false;
     private int nextNodeNumber = 0; // Track the next node number to assign, starting at 0
     private bool isDrawingLine = false;
+
+    private RectTransform rectTransform;
+    private Vector3 worldSpaceOffset;
+
+    public static NodeManager S;
+
+    void Awake()
+    {
+        S = this;
+        rectTransform = GetComponent<RectTransform>();
+        UpdateWorldSpaceOffset();
+    }
+
+    void UpdateWorldSpaceOffset()
+    {
+        if (rectTransform != null)
+        {
+            worldSpaceOffset = rectTransform.position;
+        }
+        else
+        {
+            worldSpaceOffset = Vector3.zero;
+            Debug.LogWarning("NodeManager: RectTransform component not found!");
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +65,6 @@ public class NodeManager : MonoBehaviour
             return;
         }
         SpawnNewNode();  // Spawn initial node
-        Debug.Log("Initial node spawned");
     }
       
 
@@ -62,6 +93,10 @@ public class NodeManager : MonoBehaviour
             {
                 nodeHistory.Add(currentNode);
                 CreateNewLine(currentNode.currentPosition);
+                // Clear the Filter
+                AudioManager.S.NodeClearFilter(currentNode.nodeNumber);
+                // Play the Chime
+                AudioManager.S.PlayChime();
                 
                 // Check if we've reached max nodes
                 if (nodeHistory.Count >= maxNodes - 1)
@@ -70,16 +105,27 @@ public class NodeManager : MonoBehaviour
                 }
                 else
                 {
+                    // Spawn a New Node
                     SpawnNewNode();
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(ReturnToCenter());
         }
     }
 
     IEnumerator ReturnToCenter()
     {
-        Debug.Log("ReturnToCenter started");
+        // Reset the Node Notes
+        AudioManager.S.ResetNodeNotes();
+        AudioManager.S.PlayWah();
+        
         isReturning = true;
+        controller.controlling = false;
+
         Vector2 center = Vector2.zero;
 
         currentNode.Deselect();
@@ -108,14 +154,12 @@ public class NodeManager : MonoBehaviour
             // If all lines are at center, break the loop
             if (allAtCenter)
             {
-                Debug.Log("All lines reached center!");
                 break;
             }
             
             yield return null;
         }
 
-        Debug.Log("Cleaning up nodes and restarting...");
         // Clean up and restart
         foreach (NodeScript node in nodeHistory)
         {
@@ -138,33 +182,58 @@ public class NodeManager : MonoBehaviour
         isReturning = false;
         isFirstNode = true;
         nextNodeNumber = 0; // Reset the node counter to 0
-        
+
+        // Hide the nodes while the Text is Displayed
+        foreach (NodeScript node in nodeHistory)
+        {
+            node.Deselect();
+        }
+
+        // Display the Full Text
+        TextManager.S.FadeTextTransition();       
+
+        // Try Playing the Audio Here?
+        AudioManager.S.PlayPhrase(GameManager.S.stage);
+ 
+    }
+
+    public void NewSequence()
+    {
+        // Increase the stage
+        GameManager.S.NextStage();
         // Start new sequence
         SpawnNewNode();
-        Debug.Log("New sequence started");
+        // Get New Text
+        TextManager.S.GetText();
+        // Reset the distortion effects
+        TextEffectManager.S.ResetDistortion(); 
+        controller.controlling = true;
+ 
     }
+    
 
     void CreateNewLine(Vector3 startPos)
     {
         GameObject lineObj = new GameObject("Line_" + lines.Count);
-        lineObj.transform.SetParent(transform);
         LineRenderer newLine = lineObj.AddComponent<LineRenderer>();
         
         newLine.material = lineMaterial;
         newLine.startWidth = 0.1f;
         newLine.endWidth = 0.1f;
         newLine.positionCount = 2;
-        newLine.SetPosition(0, startPos);
-        newLine.SetPosition(1, startPos);  // Start with both points at the same position
+        newLine.useWorldSpace = true;
+        newLine.SetPosition(0, startPos + worldSpaceOffset);
+        newLine.SetPosition(1, startPos + worldSpaceOffset);  // Start with both points at the same position
         
         lines.Add(newLine);
         
         // Start the line drawing animation
-        StartCoroutine(AnimateLineDrawing(newLine, startPos, Vector3.zero));
+        StartCoroutine(AnimateLineDrawing(newLine, startPos + worldSpaceOffset, Vector3.zero + worldSpaceOffset));
     }
 
     private IEnumerator AnimateLineDrawing(LineRenderer line, Vector3 startPos, Vector3 endPos)
     {
+        controller.controlling = false;
         isDrawingLine = true;
         float elapsedTime = 0f;
         
@@ -185,6 +254,7 @@ public class NodeManager : MonoBehaviour
         // Ensure the line ends exactly at the target position
         line.SetPosition(1, endPos);
         isDrawingLine = false;
+        controller.controlling = true;
     }
 
     void UpdateLines()
@@ -195,9 +265,9 @@ public class NodeManager : MonoBehaviour
             {
                 // During return sequence, all lines converge to center
                 Vector2 startPos = lines[i].GetPosition(0);
-                Vector2 newStartPos = Vector2.MoveTowards(startPos, Vector2.zero, returnSpeed * Time.deltaTime);
+                Vector2 newStartPos = Vector2.MoveTowards(startPos, Vector2.zero + (Vector2)worldSpaceOffset, returnSpeed * Time.deltaTime);
                 Vector2 endPos = lines[i].GetPosition(1);
-                Vector2 newEndPos = Vector2.MoveTowards(endPos, Vector2.zero, returnSpeed * Time.deltaTime);
+                Vector2 newEndPos = Vector2.MoveTowards(endPos, Vector2.zero + (Vector2)worldSpaceOffset, returnSpeed * Time.deltaTime);
                 
                 lines[i].SetPosition(0, newStartPos);
                 lines[i].SetPosition(1, newEndPos);
@@ -207,14 +277,14 @@ public class NodeManager : MonoBehaviour
                 // Normal line updating during gameplay
                 if (i < nodeHistory.Count && i + 1 < nodeHistory.Count)
                 {
-                    lines[i].SetPosition(0, nodeHistory[i].currentPosition);
-                    lines[i].SetPosition(1, nodeHistory[i + 1].currentPosition);
+                    lines[i].SetPosition(0, nodeHistory[i].currentPosition + (Vector2)worldSpaceOffset);
+                    lines[i].SetPosition(1, nodeHistory[i + 1].currentPosition + (Vector2)worldSpaceOffset);
                 }
                 else if (i == lines.Count - 1 && currentNode != null)
                 {
                     // Update last line to connect to current node
-                    lines[i].SetPosition(0, nodeHistory[i].currentPosition);
-                    lines[i].SetPosition(1, currentNode.currentPosition);
+                    lines[i].SetPosition(0, nodeHistory[i].currentPosition + (Vector2)worldSpaceOffset);
+                    lines[i].SetPosition(1, currentNode.currentPosition + (Vector2)worldSpaceOffset);
                 }
             }
         }
@@ -241,6 +311,8 @@ public class NodeManager : MonoBehaviour
 
         // Assign the node number
         currentNode.SetNodeNumber(nextNodeNumber++);
+
+
 
         // Calculate target position
         Vector2 targetPosition = Vector2.zero;
@@ -297,6 +369,8 @@ public class NodeManager : MonoBehaviour
         }
 
         isFirstNode = false;
-        Debug.Log("New node spawned successfully");
+
+        // Only after it's all set uplay the Node Note
+        AudioManager.S.PlayNodeNote(nextNodeNumber-1);
     }
 }

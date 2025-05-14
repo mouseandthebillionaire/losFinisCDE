@@ -14,12 +14,6 @@ public class TextTransform : MonoBehaviour
         SetRandomRotation();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SetRandomRotation(){
         float randomZRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
         float randomYRotation = Random.Range(-maxRotationAngle, maxRotationAngle);
@@ -33,8 +27,8 @@ public class TextTransform : MonoBehaviour
         float yRotationProgress = Mathf.Clamp01(1f - (Mathf.Abs(distanceToTarget.y) / 5f));
         
         // Calculate target rotations
-        float targetZRotation = Mathf.LerpAngle(originalRotation.x, 0f, zRotationProgress * rotationSpeed);
-        float targetYRotation = Mathf.LerpAngle(originalRotation.y, 0f, yRotationProgress * rotationSpeed);
+        float targetZRotation = Mathf.LerpAngle(originalRotation.x, 0f, zRotationProgress);
+        float targetYRotation = Mathf.LerpAngle(originalRotation.y, 0f, yRotationProgress);
         
         // Apply the rotations
         transform.rotation = Quaternion.Euler(0, targetYRotation, targetZRotation);

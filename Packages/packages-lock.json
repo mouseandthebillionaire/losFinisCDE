@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.cycling74.dronesynth": {
+      "version": "file:/Users/m/_Projects/rnbo.unity.audioplugin/build/droneSynth",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.cycling74.rnbotypes": "0.0.2"
+      }
+    },
+    "com.cycling74.rnbotypes": {
+      "version": "file:/Users/m/_Projects/rnbo.unity.audioplugin/RNBOTypes",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "10.2.0",
       "depth": 1,

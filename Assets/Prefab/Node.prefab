@@ -133,12 +133,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa4d99adedb54f7186b3124d3544865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedSetting: 4.64
-  proximityThreshold: 1
-  precisionControlDistance: 0.5
-  precisionSpeedMultiplier: 0.01
+  speedSetting: 10
+  proximityThreshold: 0.5
+  precisionControlDistance: 2
+  precisionSpeedMultiplier: 0.1
+  initialDelay: 0.5
+  minMoveSpeed: 5
+  maxMoveSpeed: 10
   target: {fileID: 1910808128874836351}
-  image: {fileID: 0}
+  textImage: {fileID: 0}
   selected: 1
   currentPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
