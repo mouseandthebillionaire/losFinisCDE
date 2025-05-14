@@ -32,6 +32,26 @@ In the next couple of days I want to think/write more on the repetitive nature o
 - I generally think this is going to be better if I create the displayed text elements in Photoshop<sup>2</sup>. Partly this is so I can stylize them better, but also I want to experiment with splitting the whole thing up into five chunks that are _also_ being manipulated by the dials. I have the feeling that will look cool and feel good.
 - And then, yes, I should really work on the audio...
   
+## 05.04.25 / Text Content
+
+* Repetition and recollection are the same movement, only in opposite directions; for what is recollected has been, is repeated backwards, whereas repetition properly so called is recollected forwards.
+* For a cultured person, seeing a farce is similar to playing the lottery, except that one does not have the annoyance of winning money.
+* One sits down upon a chair by the window, one looks out upon the great square, one sees the shadows of pedestrians hasten along the walls.
+* Everything is transformed into a theatrical decoration. A dreamy reality looms up in the background of the soul.
+* Midnight is past. One extinguishes the candles, one lights a small night lamp. The moonlight triumphs unalloyed. A single shadow appears still darker, a single footstep takes a long time to disappear.
+* The cloudless vault of heaven seems sad and meditative, as though the end of the world were past and heaven undisturbed were concerned only with itself.
+* One goes out again into the antechamber, into the vestibule, into that little cabinet, one goes to sleep - if one is of that fortunate number that can sleep.
+* My discovery was of no importance, and yet it was a strange one, for I discovered that there is no such thing as repetition, and I had convinced myself of this by trying in every possible way to get it repeated.
+* The older one grows and the more understanding of life one acquires, and taste for the agreeable and ability to relish it, in short, the more competent one becomes, the less one is content.
+* By firmness of purpose and by dulling one's talent for observation one can attain a uniformity which has a far more anesthetizing effect than the most capricious diversions.
+* Time becomes stronger and stronger, like a formula of incantation.
+* I am adrift. Repetition is too transcendent for me also. I can circumnavigate myself, but I cannot erect myself above myself, I cannot find the Archimedean point.
+* I am expecting a thunderstorm . . . and repetition. Yet - if only the thunderstorm were to come! 
+* At the very thought I am joyful, indescribably blissful - even if my sentence were to be that no repetition is possible.
+* I am again myself, here I have the repetition, I understand everything, and existence seems to me more beautiful than ever.
+* It is over, my skiff is afloat, the next minute I am where my soul's yearning was, where the ideas foam with elemental rage, where thoughts arise boisterously like the nations in migration.
+* There is a stillness like the profound silence of the South Sea, so that one can hear oneself speak even though the movement goes on in one's own interior - there where one every instant stakes one's life, every instant loses it, and wins it again.
+  
 
 ## Notes
 
