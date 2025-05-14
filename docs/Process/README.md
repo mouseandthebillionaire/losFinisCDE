@@ -51,7 +51,15 @@ In the next couple of days I want to think/write more on the repetitive nature o
 * I am again myself, here I have the repetition, I understand everything, and existence seems to me more beautiful than ever.
 * It is over, my skiff is afloat, the next minute I am where my soul's yearning was, where the ideas foam with elemental rage, where thoughts arise boisterously like the nations in migration.
 * There is a stillness like the profound silence of the South Sea, so that one can hear oneself speak even though the movement goes on in one's own interior - there where one every instant stakes one's life, every instant loses it, and wins it again.
-  
+
+## 05.10.25 | Repetition, Instauratio Exiguus
+
+It dawned on me during the making/testing/thinking about this that repetition is a fundamental concept here. Partly this is just the nature of the game (or lack there of?). The player finds 5 nodes in succession with the sound pitch changing slighty to indicate the proper location. This search also aligns and uncovers text in the background. Once all 5 are found, the constellation is drawn to the center of the screen and the text is revealed. Then it fades out and we start again. Repeated forever; without change. I could have built a progression (in face the original idea was to have each constellation play a unique sonic fingerprint), but I think the concept is stronger as repetition. Ritual. Process. I am reminded of labyrinths, where the act of walking, of being in the moment, the process, the act, is the whole point. This stands in direct contrast with "games" where the point is to culminate in some final "win" state, but _not_ with play, where the point is to be in a state of play. 
+
+After deciding on this theme, I then chose Søren Kierkegaard's essay ["Repetition"](https://archive.org/details/repetitionessayi0000kier_x5a6/page/n167/mode/2up) as the source for the on-screen texts. Initially this was just because duh, but there are some great lines here. This wasn't one of his essays I had read before, so it was nice to step back during the making/coding process and think through the idea through his lens. He has a totally different take on it which adds some complexity (and a bit of opaqueness) to the experience. Todo: read one or more of the many essays that discuss Kierkegaard's "Repetition" and write a more in-depth journal entry on the essay itself and how it related to the themes of this project
+
+Lastly, I was unhappy with the anagram nae that I've been using for this, and wanted to find something more apt. I happened upon the word instauratio which is a latin phrase used in ancient Rome for the repetition  or redo of a religious rite. So when adding the modifier exiguus, we get "a small do-over" which I think is fitting.
+
 
 ## Notes
 
