@@ -44,7 +44,7 @@ Material:
     - PixelSnap: 0
     - _BloomFalloff: 3.46
     - _DistanceRatio: 1
-    - _DistanceToTarget: 0.7186495
+    - _DistanceToTarget: 0.70708394
     - _EmissionIntensity: 0.6
     - _EnableExternalAlpha: 0
     - _Glossiness: 0.5
@@ -58,7 +58,7 @@ Material:
     - _WaveSpeed: 5.8
     - _ZWrite: 0
     m_Colors:
-    - _CloseColor: {r: 0.9716981, g: 0.22459061, b: 0.378407, a: 1}
+    - _CloseColor: {r: 0.9811321, g: 0.023139905, b: 0.21875075, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.9339623, g: 0.44495374, b: 0.75570303, a: 1}
     - _FarColor: {r: 1, g: 1, b: 1, a: 1}
