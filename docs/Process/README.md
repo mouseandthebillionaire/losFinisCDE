@@ -58,13 +58,33 @@ It dawned on me during the making/testing/thinking about this that repetition is
 
 After deciding on this theme, I then chose Søren Kierkegaard's essay ["Repetition"](https://archive.org/details/repetitionessayi0000kier_x5a6/page/n167/mode/2up) as the source for the on-screen texts. Initially this was just because duh, but there are some great lines here. This wasn't one of his essays I had read before, so it was nice to step back during the making/coding process and think through the idea through his lens. He has a totally different take on it which adds some complexity (and a bit of opaqueness) to the experience. Todo: read one or more of the many essays that discuss Kierkegaard's "Repetition" and write a more in-depth journal entry on the essay itself and how it related to the themes of this project
 
-Lastly, I was unhappy with the anagram nae that I've been using for this, and wanted to find something more apt. I happened upon the word instauratio which is a latin phrase used in ancient Rome for the repetition  or redo of a religious rite. So when adding the modifier exiguus, we get "a small do-over" which I think is fitting.
+Lastly, I was unhappy with the anagram name that I've been using for this, and wanted to find something more apt. I happened upon the word instauratio which is a latin phrase used in ancient Rome for the repetition or redo of a religious rite. So when adding the modifier exiguus, we get "a small repetition" which I think is fitting.
 
+## 05.25.25 | Ludodrome Reflections
+
+Success! The case unfortunately got a little scuffed during the transportation, but luckily it was _pretty_ dark in there, which worked in my favour. Speaking of transport, being able to carry this entire thing (cables and all) in a backpack is so great. From now on, I always want to make work that is this compact. It makes the whole experience of showcasing that much easier. Next step would be to get the wiring and computer aspects more compact, which involved thinking about using a Raspberry PI and/or Mac Mini.<sup>3</sup>
+
+As far as the reception, I think it went rather well. I described it as a "sonic safecracking" mechanic, which people immediately got. Only a few people had difficulty with hearing the changes in sound, which lead me to think that are perfectly as subtle as I intended. The screen doesn't show the color change very well (even though I bumped up the colour to full red), so another visual indicator would be helpful. This could be by getting brighter (via the bloom effect?), more opaque, or some sort of shaking perhaps? The first node is definitely the hardest to find, so it would improve the experience by having that first node's target area a little bigger. Also, it might be nice to have some sort of countdown mechanic to indicate how many nodes there are left to find (perhaps hash lines or shapes, to avoid straight numerical representation) With this in place, there would also be the opportunity to create 'levels' where there are different numbers of nodes.
+
+One person in particular spent about a half hour playing the game and really did seem to get into a contemplative state. He closed his eyes at certain points, using the sound alone to find the nodes. Remarkably successful! I tried this myself during a break, and it felt really good to do it that way. It's shocking how rewarding the text reveal feels. People are immediately excited to see it, and it definitely seems to be enough of a payoff for them to keep going, which is a happy unexpected thing. I didn't plan on a "sticky" experience, but just this little bit of reward makes it work.
+
+A final interesting note: many of the people asked where the idea came from, and I kept finding myself referring back to _LTHC_ which is kind of weird? Rather than talking about it as it's own standalone thing with its own design goals, I felt the need to talk about it in context with the bigger work trajectory. I don't know if this was a successful way to discuss it (especially needing to show the older project documentation from my phone<sup>4</sup>), but it definitely cemented in my mind the relationship between the two projects. I wonder if Love Hulton thinks of his various pieces as working or living in community with the others? Does one type of synthesizer emerge from another? Do his ideas build off of each other? Probably?
+
+I would definitely show this again (which is not something I usually say) so I'd call that a win.
+
+### Next
+* Touch up the paint
+* Get good documentation imagery
+* Write up a good project description
+* Add it to the work section of the website
+* Think about if I really do want to show this again, and if so implement some of the changes listed above
 
 ## Notes
 
 1. Which I've never even read, but the potential links to the repetitive nature of the work is too good to ignore. Hopefully I won't read it and immediately regret my choice
 2. [Photopea](https://www.photopea.com) actually, because the University keeps taking away my Adobe credentials...
+3. I hadn't mentioned earlier, but this actually brings to mind the issue I faced with the Mac Mini. Sort of a boring story, but worth noting that Unity 6 only exports to Mac OS 13+, and my old (2014?) Mac Mini is maxed out at OS 12. Obviously, I can just buy a new Mac Mini moving forward, but it also feels like a waste not to use the one I have. All that being said, I should plan to use an earlier version of Unity if I evr plan on using the old Mac Mini for an exhibition. Remember!
+4. Though I suppose this was a good way to point people towards the website since the Ludodrome people used my name instead of Mouse & the Billionaire, and I forgot business cards like an amateur
 
 
 
