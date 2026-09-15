@@ -1,6 +1,6 @@
 # Analysis
 
-A record of the analysis phase of the EIKON project, leading up to the final closing statement. 
+A record of the analysis phase of the Instauratio Exiguus project, leading up to the final closing statement. 
 
 ## Journal
 
