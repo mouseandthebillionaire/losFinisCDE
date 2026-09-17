@@ -20,6 +20,16 @@ There is next to nothing here of interest other than perhaps the mention of Curs
 
 From an MDM perspective though, I should focus on doing a more thorough job with these commit messages in the future.
 
+### 09.17.26 | Journal Pass
+
+Again we see a discussion about the speed of production. From a production perspective I really like this idea of leaning on Cursor/Claude as I would an RA allowing me to focus on the more interesting design decisions. It also helps speed up the iterative process. I had this spun up really quickly so I could test if the idea was actually worthwhile and was able to make a ton of small changes throughout. 
+
+We can definitely see this on the [second day's journal](https://github.com/mouseandthebillionaire/losFinisCDE/tree/main/docs/Process#04262025--busy-week). Often, I'm so in-the-weeds with making a thing even _work_ that the concept takes a backseat. But here, because I have a fairly complete prototype, I am able to really build up the conceptual side of it with appropriate texts and interactions. Already I am leaning into the repetitive nature of this and thinking about it in terms of contemplative labyrinths. And the function of labyrinths has increasingly become a real touchstone for the greater work at large. Labyrinths are a perfect example of both "ceremonious activity" and "contemplative play" in general. And this specific project builds on this. It is like a labyrinth because the user is required to "travers\[e] the space in a semi-prescribed way" but it is more game-ish and playful because that prescribed path is hidden and must be found. Henry's game at Ludodrome last weekend was similar in this way. He's probably not thinking of it from a contemplative perspective, but I wonder if it could be played that way...
+
+_"It dawned on me during the making/testing/thinking about this that repetition is a fundamental concept here."_ ([05.10.25](https://github.com/mouseandthebillionaire/losFinisCDE/tree/main/docs/Process#051025--repetition-instauratio-exiguus))
+
+From here in out, I'm really leaning into the repetitive nature of this, which definitely wasn't there from the start. Even the final name, Instauratio Exiguus (A Small Repetition), arises from this. It will be interesting to see when this idea starts when I do my robust coding pass. And the game doesn't really reward repetitive play? The music changes a bit, but not dramatically. Something about the hunting, finding, and resolution of the text really triggers something for (some) people. 
+
 ## Notes
 
 [^1]: I'm going to go ahead and blame speed for my constant misspelling of "happening." One day I'll get it nailed down.
