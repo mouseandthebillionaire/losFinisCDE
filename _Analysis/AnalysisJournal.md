@@ -28,9 +28,9 @@ We can definitely see this on the [second day's journal](https://github.com/mous
 
 _"It dawned on me during the making/testing/thinking about this that repetition is a fundamental concept here."_ ([05.10.25](https://github.com/mouseandthebillionaire/losFinisCDE/tree/main/docs/Process#051025--repetition-instauratio-exiguus))
 
-From here in out, I'm really leaning into the repetitive nature of this, which definitely wasn't there from the start. Even the final name, Instauratio Exiguus (A Small Repetition), arises from this. It will be interesting to see when this idea starts when I do my robust coding pass. And the game doesn't really reward repetitive play? The music changes a bit, but not dramatically. Something about the hunting, finding, and resolution of the text really triggers something for (some) people. 
+From here, I'm really leaning into the repetitive nature of this, which definitely wasn't there from the start. Even the final name, Instauratio Exiguus (A Small Repetition), arises from this. It will be interesting to see when this idea starts when I do my robust coding pass. And the game doesn't really reward repetitive play? The music changes a bit, but not dramatically. Something about the hunting, finding, and resolution of the text really triggers something for (some) people. 
 
 ## Notes
 
-[^1]: I'm going to go ahead and blame speed for my constant misspelling of "happening." One day I'll get it nailed down.
+[^1]: I'm also going to go ahead and blame speed for my constant misspelling of "happening." One day I'll get it nailed down.
 	
